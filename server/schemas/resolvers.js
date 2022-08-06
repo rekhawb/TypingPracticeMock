@@ -74,10 +74,9 @@ const resolvers = {
     
         saveProgress: async (parent, { progressData }, context) => {
           if (context.user) {
-            const userUpdated = await User.findByIdAndUpdate(
+            const userUpdated= await User.findByIdAndUpdate(
               { _id: context.user._id },
               { $push: { previousWork: progressData } },
-              //{ $addToSet: { savedBooks: bookData } },
               { new: true }
             );
     
@@ -86,11 +85,11 @@ const resolvers = {
           throw new AuthenticationError("You need to be logged in saveBook!");
         },
     
-        removeProgress: async (parent, { progressId }, context) => {
+        removeProgress: async (parent, { textId }, context) => {
           if (context.user) {
             const userUpdated = await User.findOneAndUpdate(
               { _id: context.user._id },
-              { $pull: { savedBooks: { progressId: progressId } } },
+              { $pull: { previousWork: { textId: textId } } },
               { new: true }
             );
     

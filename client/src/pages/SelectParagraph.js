@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 // Import the `useMutation()` hook from Apollo Client
 import { useMutation,useQuery } from '@apollo/client';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
@@ -6,7 +7,7 @@ import { saveParaInput,saveParaUser } from '../utils/localStorage';
 
 import Auth from '../utils/auth';
 
-import {GET_PARAGRAPH,GET_ME } from '../utils/queries';
+import {GET_PARAGRAPH,GET_ME,GET_ATEXT } from '../utils/queries';
 
 
 const SelectParagraphs = () =>{
@@ -19,8 +20,8 @@ const SelectParagraphs = () =>{
       }
 
       const handleSelectText = () => {
+     
 
-        
       }
     
       return (
@@ -45,10 +46,11 @@ const SelectParagraphs = () =>{
                     <Card.Title>{text.paragraphTitle}</Card.Title>
                     {text.paragraphDesc}
                     <Card.Body>
-                     
-                      <Button className='btn-block btn-warning' onClick={() => handleSelectText(text._id)} >
+                    <Link to={{ pathname: `/search/${text._id}` }}>
+                    <Button className='btn-block btn-warning' >
                       {text.paragraphTitle}
                       </Button>
+        </Link>
                     </Card.Body>
                   </Card>
                 );

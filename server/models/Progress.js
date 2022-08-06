@@ -2,6 +2,16 @@ const { Schema, model } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
 
 const progressSchema = new Schema({
+
+  textId:{
+  type: String,
+        // required: 'You need to leave a thought!',
+        minlength: 1,
+        maxlength: 280,
+        trim: true,
+
+},
+
     passageTitle:{
         type: String,
         // required: 'You need to leave a thought!',
@@ -10,33 +20,22 @@ const progressSchema = new Schema({
         trim: true,
 
     },
-  passageDesc: {
-    type: String,
-    // required: 'You need to leave a thought!',
-    minlength: 1,
-    maxlength: 280,
-    trim: true,
-  },
   attemptedOn: {
     type: String,
     trim: true
   },
-  charCorrect: {
+  grossWPM: {
     type: String,
     trim: true,
   },
-  charIncorrect: {
+  netWPM: {
     type: String,
     trim: true,
   },
-  timeSpent: {
+ accuracy: {
     type: String,
     trim: true,
-  },
-  wpm: {
-    type: String,
-    trim: true,
-  },
+  }
 });
 
 //const Progress = model("Progress",progressSchema);

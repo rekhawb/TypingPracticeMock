@@ -16,14 +16,12 @@ const typeDefs = gql`
   }
 
 type Progress {
-    progressId: ID
-    paragraphTitle: [String]
-    paragraphDesc:String
+    textId:ID
+    passageTitle:String
     attemptedOn:String
-    charCorrect:String
-    charIncorrect:String
-    timeSpent:String
-    wpm:String
+    grossWPM:String
+    netWPM:String
+    accuracy:String
 }
 
 
@@ -33,14 +31,12 @@ type Auth {
 }
 
   input ProgressInput {
-    progressId: String!
-    paragraphTitle: String
-    paragraphDesc:String
+    textId:ID
+    passageTitle:String
     attemptedOn:String
-    charCorrect:String
-    charIncorrect:String
-    timeSpent:String
-    wpm:String
+    grossWPM:String
+    netWPM:String
+    accuracy:String
 }
 
 
@@ -54,7 +50,7 @@ type Auth {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     saveProgress(progressData: ProgressInput): User
-    removeProgress(progressId:ID!):User    
+    removeProgress(textId:ID!):User    
   }
 
 

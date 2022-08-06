@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SearchPassage from './pages/SearchPassageN';
 import SavedProgress from './pages/SavedProgress';
 import SelectParagraph from './pages/SelectParagraph';
+import ResultsModal from './pages/ViewResultsModal';
+import AchievementModal from './pages/UserAchievement';
 import Navbar from './components/Navbar';
 
 
@@ -45,9 +47,17 @@ function App() {
               path='/search' 
               element={<SelectParagraph />} 
             />
+              <Route 
+              path='/search/:id' 
+              element={<SearchPassage />} 
+            />
             <Route 
               path='/saved' 
               element={<SavedProgress />} 
+            />
+            <Route 
+              path='/achievement' 
+              element={<AchievementModal />} 
             />
             <Route 
               path='*'

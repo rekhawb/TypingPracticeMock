@@ -1,11 +1,14 @@
 import React, { useState,useEffect } from 'react';
-import { useQuery } from '@apollo/client';
+import { useMutation,useQuery } from '@apollo/client';
 import { getParaInput,getParaUser } from '../utils/localStorage';
 
 import '../index.css'
+import { SAVE_PROGRESS } from '../utils/mutations';
 
 const ResultsModal = ({show,paragraphInput,paragraphUser,charCount,correctChar,inCorrectChar}) => {
 
+
+  
 
 let str1 =JSON.stringify( getParaInput());
 let str2 = JSON.stringify(getParaUser());

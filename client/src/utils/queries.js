@@ -8,14 +8,13 @@ export const GET_ME = gql`
       _id
       username
       email
-      previousWork {
-        progressId
-        passageDesc
+      previousWork{
+        textId
+        passageTitle
         attemptedOn
-        charCorrect
-        charIncorrect
-        timeSpent
-        wpm
+        grossWPM
+        netWPM
+        accuracy
       }
     }
   }

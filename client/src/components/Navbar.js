@@ -20,12 +20,16 @@ const AppNavbar = () => {
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
-              <Nav.Link as={Link} to='/search'>
-               Select texts
-              </Nav.Link>
+            
               {/* if user is logged in show paragraph to select*/}
               {Auth.loggedIn() ? (
                 <>
+                  <Nav.Link as={Link} to='/search'>
+               Select texts
+              </Nav.Link>
+              <Nav.Link as={Link} to='/achievement'>
+              Achievement Board
+              </Nav.Link>
                   <Nav.Link as={Link} to='/saved'>
                    Choose a paragraph
                   </Nav.Link>

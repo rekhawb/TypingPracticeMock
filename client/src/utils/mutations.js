@@ -32,14 +32,12 @@ export const SAVE_PROGRESS = gql`
         username
         email
         previousWork{
-          progressId
+          textId
           passageTitle
-          passageDesc
           attemptedOn
-          charCorrect
-          charIncorrect
-          timeSpent
-          wpm
+          grossWPM
+          netWPM
+          accuracy
         }
     }
     }
@@ -47,22 +45,23 @@ export const SAVE_PROGRESS = gql`
 
 
 export const REMOVE_PROGRESS = gql`
-  mutation removeProgress($progressId:ID!) {
-    removeProgress(progressId:$progressId) {
+  mutation saveProgress($textId:ID!) {
+    saveProgress(textId:$textId) {
         _id
         username
         email
         previousWork{
-          progressId
+          textId
           passageTitle
-          passageDesc
           attemptedOn
-          charCorrect
-          charIncorrect
-          timeSpent
-          wpm
+          grossWPM
+          netWPM
+          accuracy
         }
     }
     }
 `;
+
+
+
 
