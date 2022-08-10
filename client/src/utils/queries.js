@@ -9,6 +9,7 @@ export const GET_ME = gql`
       username
       email
       previousWork{
+        _id
         textId
         passageTitle
         attemptedOn

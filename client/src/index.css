@@ -70,6 +70,14 @@ p {
   margin-top: 0;
 }
 
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 a {
   color: var(--tertiary);
   text-decoration: none;
@@ -214,6 +222,8 @@ input:focus {
     width: 100%;
   }
 }
+
+
 
 
 

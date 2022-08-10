@@ -1,25 +1,45 @@
 import React, { useState,useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { useMutation,useQuery } from '@apollo/client';
+import { useParams, Link, useLocation} from 'react-router-dom';
+import { useMutation,useQuery,useLazyQuery } from '@apollo/client';
 import { Modal } from 'react-bootstrap';
 import ResultsModal from './ViewResultsModal';
+import SelectParagraphs from './SelectParagraph';
 import { saveParaInput,saveParaUser } from '../utils/localStorage';
 import { getParaInput,getParaUser } from '../utils/localStorage';
 import {GET_ATEXT} from '../utils/queries';
 import { SAVE_PROGRESS } from '../utils/mutations';
-
+import {Container} from '../components/styles/Container';
+import { StyledCard } from '../components/styles/Card';
+import { Flex } from'../components/styles/Flex';
+import {Button}  from'../components/styles/Button'
+import ViewResults from './ViewResultsOnly';
+import { format } from 'date-fns'
 
 let str = "Springtime and summer are notorious for daily thunderstorms. It is not uncommon for storms to cause fear and anxiety in a child.But if you understand what is happening, that fear can turn into wonder. Nature is amazing!";
 
-function SearchPassage() {
+const SearchPassage =  (props) =>{
 
-  let {id} = useParams();
-  const {loading,data} = useQuery(GET_ATEXT,{
-    variables: {_id:id},
-  });
+  //let {id} = useParams();
+  //const {loading,data} = useQuery(GET_ATEXT,{
+    //variables: {_id:id},    
+  //});
 
-str = data?.selectParagraph.paragraphDesc || str ;
+  //use location to capture values sent from searchPassageN
+  const location = useLocation();
+const { state } = location;
 
+// if the user types /starttyping route manually, then standard str will be populated.
+
+// blank page or errors will not be displayed
+
+const paraInput = state === null ? str :state.paraInput;
+const paraId = state === null ? 'abc123' :state.idInput;
+const paraTitle = state === null ? 'Random Text' :state.titleInput;
+
+str =  paraInput
+//id//data?.selectParagraph.paragraphDesc || str;
+let id =paraId// stateId;
+let title = paraTitle
 //save progress to db
 const [saveProgress, {  error }] = useMutation( SAVE_PROGRESS);
 
@@ -27,6 +47,9 @@ str = JSON.stringify(str).slice(1,);
 
 // create state for holding our search field data
 const [paragraphInput, setparagraphInput] = useState(str);
+
+
+
 const [paragraphUser, setparagraphUser] = useState('');
 const [trackTime, setTimer] = useState(60);
 const[warningModal,showModal] = useState(false);
@@ -51,25 +74,42 @@ let timer;
         }, 1000)
 
      if(trackTime === 0){ 
-
+      // handleUpdateProgress is called even when showModal is false. showModal === false implie, user typing session is still on
+      // warningModal === true prevents calling handleUpdateProgress when  useEffect  is called twice
+      if(warningModal === true && charCount >=20) {
       handleUpdateProgress(id);
+      }
 
       clearInterval(timer);
-
+      
        showModal (true) 
-      console.log(warningModal);
+      //console.log(warningModal);
+
+      // donot show results if char typed are less than 30 characters, 30/5 atleast 6 words
+
+   
       }
 
       }
 
+      // save data to DB
 
       const handleUpdateProgress = async(textId) =>{
 
-        
+        //console.log("save progress to DB")
     
       const {data} = await saveProgress({
         // variables: { bookData: {...bookToSave}},
-        variables: { progressData: {textId: id,grossWPM:(Math.round(charTyped/5)).toString()}},
+        variables: { progressData: {
+          textId: id,
+          passageTitle:title,
+          attemptedOn:format(new Date(), 'MM/dd/yyyy'),
+          grossWPM:(Math.round(charTyped/5)).toString(),
+          netWPM:((Math.round(charTyped/5))-inCorrectChar).toString(),
+          accuracy:(Math.round(((correctChar/charCount)*100))).toString()
+        
+        
+        }},
          //variables: {bookToSave}
        });  
       }
@@ -90,6 +130,7 @@ let timer;
         }
        
       });
+
       const userInputVaidate = (e) =>{
         let inputStr =JSON.stringify(getParaInput()).slice(1,);
        let userStr = e.target.value;
@@ -134,9 +175,9 @@ let timer;
  {
      !warningModal ?   
      
-     <div className ="container">
-     <div className ="row">
-         <div className ="col-xs-6 mt-5 mr-2">
+   <Container>
+    <Flex>
+     <StyledCard>
             
              <textarea
                name='paragraphInput'
@@ -145,13 +186,13 @@ let timer;
                spellCheck='false'
                size='lg'
                placeholder=''
-               rows={10}
-               cols={60}
+               rows={5}
+               cols={100}
+               disabled={true}
              />
-           </div>
- 
-           <div className ="col-xs-6 mt-5 ml-2">
-           
+        </StyledCard>
+        </Flex>
+        <StyledCard>
              <textarea
                name='paragraphUser'
                value={paragraphUser}
@@ -163,26 +204,23 @@ let timer;
                spellCheck='false'
                size='lg'
                placeholder='Start typing here'
-               rows={10}
-               cols={60}
+               rows={5}
+               cols={100}
              />
-           </div>
- 
-            </div>
+           </StyledCard>
  
  
-            <div className ="row">
-         <div className ="col-xs-6 mt-5 mr-2">
-           <button type="button" className="btn btn-primary">Start Timer</button>
-          </div>
-          <div className ="col-xs-6 mt-5 mr-2">
-           <button type="button" className="btn-lg btn-primary">Remaining Time : {trackTime} s</button>
-          </div>
- 
-          </div>
+            <StyledCard>
+           <Button>Remaining Time : {trackTime} s</Button>
+          </StyledCard>
      
-          </div>
-     : 
+          </Container>
+     :  warningModal && charCount < 20 ? 
+    <ViewResults />
+
+
+
+     :
 
            <ResultsModal 
      show={warningModal}

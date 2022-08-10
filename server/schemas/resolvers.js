@@ -85,11 +85,11 @@ const resolvers = {
           throw new AuthenticationError("You need to be logged in saveBook!");
         },
     
-        removeProgress: async (parent, { textId }, context) => {
+        removeProgress: async (parent, { _id }, context) => {
           if (context.user) {
             const userUpdated = await User.findOneAndUpdate(
               { _id: context.user._id },
-              { $pull: { previousWork: { textId: textId } } },
+              { $pull: { previousWork: { _id: _id} } },
               { new: true }
             );
     

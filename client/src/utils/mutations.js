@@ -45,8 +45,8 @@ export const SAVE_PROGRESS = gql`
 
 
 export const REMOVE_PROGRESS = gql`
-  mutation saveProgress($textId:ID!) {
-    saveProgress(textId:$textId) {
+  mutation removeProgress($textId:String!) {
+    removeProgress(_id:$textId) {
         _id
         username
         email

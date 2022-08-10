@@ -16,7 +16,8 @@ const typeDefs = gql`
   }
 
 type Progress {
-    textId:ID
+  _id:String
+    textId:String
     passageTitle:String
     attemptedOn:String
     grossWPM:String
@@ -31,7 +32,7 @@ type Auth {
 }
 
   input ProgressInput {
-    textId:ID
+    textId:String
     passageTitle:String
     attemptedOn:String
     grossWPM:String
@@ -50,10 +51,12 @@ type Auth {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     saveProgress(progressData: ProgressInput): User
-    removeProgress(textId:ID!):User    
+    removeProgress(_id:String):User    
   }
 
 
   `;
+
+  //removeProgress(textId:String!):User   
 
   module.exports = typeDefs;

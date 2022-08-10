@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // Import the `useMutation()` hook from Apollo Client
 import { useMutation,useQuery } from '@apollo/client';
-import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import { Jumbotron,Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import { saveParaInput,saveParaUser } from '../utils/localStorage';
-
+import { Container } from '../components/styles/Container';
+import { StyledHeader } from '../components/styles/Header';
+import { Flex } from'../components/styles/Flex';
+import { StyledCard } from '../components/styles/Card';
 import Auth from '../utils/auth';
 
 import {GET_PARAGRAPH,GET_ME,GET_ATEXT } from '../utils/queries';
@@ -23,39 +26,42 @@ const SelectParagraphs = () =>{
      
 
       }
-    
+    //<Link to={{ pathname: `/search/${text._id}` }}>
+    //<Link to={{ pathname: `/search/${text.paragraphDesc}`} }>
+    //<Link to={{ pathname: `/search/${text.paragraphDesc}`} }>
       return (
         <>
-          <Jumbotron fluid className='text-light bg-dark'>
-            <Container>
-              <h1>Select one of the following texts to start typing!</h1>
+             <Container>
+              <StyledHeader>Select one of the following texts to start typing!</StyledHeader>
             </Container>
-          </Jumbotron>
+          
           <Container>
-            <h2>
-              {paragraphData?.length
-                ? `Select  any one of the ${paragraphData.length} available ${paragraphData.length === 1 ? 'text' : 'texts'}:`
-                : 'There are no text selections!'}
-            </h2>
-            <CardColumns>
+         
+           
               
               {paragraphData?.map((text) => {
                 return (
-                    
-                  <Card key={text._id} border='dark'>
-                    <Card.Title>{text.paragraphTitle}</Card.Title>
+                  <Flex>
+                  <StyledCard key = {text._id}>
+                 
                     {text.paragraphDesc}
                     <Card.Body>
-                    <Link to={{ pathname: `/search/${text._id}` }}>
+                    <Link 
+                    to={ `/starttyping`}
+                    state= {{paraInput:text.paragraphDesc,idInput:text._id,titleInput:text.paragraphTitle}}
+                   >
                     <Button className='btn-block btn-warning' >
                       {text.paragraphTitle}
                       </Button>
         </Link>
                     </Card.Body>
-                  </Card>
+                
+                  </StyledCard>
+                  </Flex>
                 );
               })}
-            </CardColumns>
+        
+            
           </Container>
         </>
       );

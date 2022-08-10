@@ -10,12 +10,28 @@ import SelectParagraph from './pages/SelectParagraph';
 import ResultsModal from './pages/ViewResultsModal';
 import AchievementModal from './pages/UserAchievement';
 import Navbar from './components/Navbar';
+import Home from './components/HomePage'
 
+import { ThemeProvider } from 'styled-components'
+import Header from './components/styles/Header'
+import Footer from './components/styles/Header'
+import Card from './components/styles/Header'
+import { Container } from './components/styles/Header'
+import GlobalStyles from  './components/styles/Header'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
+
+const theme = {
+  colors: {
+    header: '#ebfbff',
+    body: '#fff',
+    footer: '#003333',
+  },
+  mobile: '768px',
+}
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -37,8 +53,11 @@ const client = new ApolloClient({
 
 
 function App() {
+
     return (
-      <ApolloProvider client={client}>
+
+  
+      <ApolloProvider client={client}>      
       <Router>
         <>
           <Navbar />
@@ -48,7 +67,8 @@ function App() {
               element={<SelectParagraph />} 
             />
               <Route 
-              path='/search/:id' 
+              //path='/search/:id' 
+              path='/starttyping' 
               element={<SearchPassage />} 
             />
             <Route 
@@ -59,14 +79,16 @@ function App() {
               path='/achievement' 
               element={<AchievementModal />} 
             />
-            <Route 
-              path='*'
-              element={<h1 className='display-2'>Wrong page!</h1>}
+         
+            <Route  path='*'
+           element={<Home />} 
+           //  element={<h1 className='display-2'>Wrong page!</h1>}
             />
           </Routes>
         </>
       </Router>
       </ApolloProvider>
+      
     );
   }
   

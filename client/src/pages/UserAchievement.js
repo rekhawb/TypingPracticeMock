@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 
 
 
-import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
+import { Jumbotron,CardColumns, Card } from 'react-bootstrap';
+
+import {Container} from '../components/styles/Container'
+import { StyledHeader } from '../components/styles/Header';
+import { Button } from '../components/styles/Button';
 
 import Auth from '../utils/auth';
 //Import the `useMutation()` hook from Apollo Client
@@ -22,7 +26,7 @@ function AchievementModal() {
 
     const handleDeleteText = async (textId) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
-    
+    alert(textId);
         if (!token) {
           return false;
         }
@@ -31,7 +35,7 @@ function AchievementModal() {
          // const response = await deleteBook(bookId, token);
     
          const {data} = await removeProgress({
-          variables: {textId},
+          variables: {textId:textId},
         });
     
     
@@ -50,11 +54,11 @@ function AchievementModal() {
 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
+     
         <Container>
-          <h1>Track your progress!</h1>
+          <StyledHeader>Track your progress!</StyledHeader>
         </Container>
-      </Jumbotron>
+    
       <Container>
         <h2>
           {userData.previousWork?.length
@@ -71,8 +75,9 @@ function AchievementModal() {
                   <p className='small'>Gross WPM: {work.grossWPM}</p>
                   <p className='small'>Net WPM: {work.netWPM}</p>
                   <p className='small'>Accuracy: {work.accuracy}</p>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteText(work.textId)}>
-                    Delete this Book!
+                 
+                  <Button className='btn-block btn-danger' onClick={() => handleDeleteText(work._id)}>
+                    Delete
                   </Button>
                 </Card.Body>
               </Card>

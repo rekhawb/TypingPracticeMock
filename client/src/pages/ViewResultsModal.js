@@ -1,6 +1,10 @@
 import React, { useState,useEffect } from 'react';
 import { useMutation,useQuery } from '@apollo/client';
 import { getParaInput,getParaUser } from '../utils/localStorage';
+import { Container } from  '../components/styles/Container';
+import { StyledCard } from '../components/styles/Card';
+import { Flex } from'../components/styles/Flex';
+import { StyledHeader } from '../components/styles/Header';
 
 import '../index.css'
 import { SAVE_PROGRESS } from '../utils/mutations';
@@ -48,7 +52,7 @@ let wordPara2 = str2.match(/\b(\w+)\b/g);
 
       useEffect(() => {
         charCount  !== 0 ?
-        setnWPM(gWPM-inCorrectChar): setnWPM(0)
+        setnWPM((Math.round(charCount/5))-inCorrectChar): setnWPM(0)
       },[]);
 
       useEffect(() => {
@@ -97,12 +101,15 @@ let wordPara2 = str2.match(/\b(\w+)\b/g);
 
   return (
 
-    <div className="container">
+    <Container>
     {isHighlightActive ? (
       // map through the two strings and render the highlighted character or regular character
       <>
-      <div className ="row">
-         <div className ="col-xs-4 mt-5 mr-2">
+        <StyledHeader>
+          Text selected to practice
+        </StyledHeader>
+
+      <StyledCard>
             
          
           {para1.map((char, index) => {
@@ -113,10 +120,13 @@ let wordPara2 = str2.match(/\b(\w+)\b/g);
             );
           })}
         
-           </div>
- 
-           <div className ="col-xs-4 mt-5 ml-2">
-           
+        </StyledCard>
+
+        <StyledHeader>
+          Your response
+        </StyledHeader>
+
+           <StyledCard>
            
           {para2.map((char, index) => {
             return wrongCharIndexes.has(index) ? (
@@ -125,22 +135,23 @@ let wordPara2 = str2.match(/\b(\w+)\b/g);
               <>{char}</>
             );
           })}
-        
-           </div>
- 
-            </div>
+    </StyledCard>
+    
+    <StyledHeader>
+          Score
+        </StyledHeader>
   
-       
-       <div className ="row">
-         <div className ="col-xs-4 mt-5 mr-2">
+    
+    <StyledCard>
            Word Matches:  {wrongWordIndexes}
-         </div>
-         <div className ="col-xs-4 mt-5 mr-2">
+           </StyledCard>
+           <StyledCard>         
            Key Strokes:  {charCount}
-         </div>
-         <div className ="col-xs-4 mt-5 mr-2">
+           </StyledCard>
+           <StyledCard>      
            Gross WPM:  {gWPM}  WPM
-         </div>
+           </StyledCard>
+           <StyledCard>
          <div className ="col-xs-4 mt-5 mr-2">
            Net WPM:  {nWPM} WPM
          </div>
@@ -156,7 +167,7 @@ let wordPara2 = str2.match(/\b(\w+)\b/g);
          <div className ="col-xs-4 mt-5 mr-2">
            TotalChar: {charCount}
          </div>
-     </div>
+     </StyledCard>
 
             </>
     ) : (
@@ -172,7 +183,7 @@ let wordPara2 = str2.match(/\b(\w+)\b/g);
       </div>
 
     )}
-  </div>
+  </Container>
   );
 };
 

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
+import { Navbar, Nav, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 
 import Auth from '../utils/auth';
+import { Container } from './styles/Container';
 
 const AppNavbar = () => {
   // set modal display state
@@ -12,11 +13,10 @@ const AppNavbar = () => {
 
   return (
     <>
+    <Container>
       <Navbar bg='dark' variant='dark' expand='lg'>
         <Container fluid>
-          <Navbar.Brand as={Link} to='/'>
-            Flash Keys
-          </Navbar.Brand>
+        
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
@@ -24,15 +24,15 @@ const AppNavbar = () => {
               {/* if user is logged in show paragraph to select*/}
               {Auth.loggedIn() ? (
                 <>
+                <Nav.Link as={Link} to='/'>
+                   Home
+                  </Nav.Link>
                   <Nav.Link as={Link} to='/search'>
                Select texts
               </Nav.Link>
               <Nav.Link as={Link} to='/achievement'>
               Achievement Board
               </Nav.Link>
-                  <Nav.Link as={Link} to='/saved'>
-                   Choose a paragraph
-                  </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (
@@ -42,6 +42,7 @@ const AppNavbar = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      </Container>
       {/* set modal data up */}
       <Modal
         size='lg'
