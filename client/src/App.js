@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SearchPassage from './pages/SearchPassageN';
 import SavedProgress from './pages/SavedProgress';
 import SelectParagraph from './pages/SelectParagraph';
+import Donation from './pages/DonationPage';
 import ResultsModal from './pages/ViewResultsModal';
 import AchievementModal from './pages/UserAchievement';
 import Navbar from './components/Navbar';
@@ -78,6 +79,10 @@ function App() {
             <Route 
               path='/achievement' 
               element={<AchievementModal />} 
+            />
+              <Route 
+              path='/donate' 
+              element={<Donation/>} 
             />
          
             <Route  path='*'

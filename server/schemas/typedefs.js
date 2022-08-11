@@ -7,6 +7,7 @@ const typeDefs = gql`
     email: String
     password: String
     previousWork: [Progress]
+    orders:[Order]
   }
 
   type Paragraph{
@@ -25,6 +26,26 @@ type Progress {
     accuracy:String
 }
 
+
+
+type Donation {
+_id:ID
+donationTitle:String
+donationDesc:String
+donationAmt:Float
+}
+
+type Checkout {
+  session: ID
+}
+
+
+type Order {
+  _id: ID
+  userId:String
+  purchaseDate: String
+ donations: [Donation]
+}
 
 type Auth {
   token: ID!
@@ -45,6 +66,9 @@ type Auth {
     user:User
     paragraph: [Paragraph]
     selectParagraph(_id:String):Paragraph
+    donation:Donation
+    order(_id: ID!): Order
+    checkout(donations: [ID]!): Checkout
   }
 
   type Mutation {
@@ -52,6 +76,8 @@ type Auth {
     login(email: String!, password: String!): Auth
     saveProgress(progressData: ProgressInput): User
     removeProgress(_id:String):User    
+    
+    addOrder(donations: [ID]!): Order
   }
 
 

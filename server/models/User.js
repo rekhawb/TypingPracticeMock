@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt');
 
 const progressSchema = require('./Progress');
 
+const Order = require('./Order');
+
 const userSchema = new Schema({
   username: {
     type: String,
@@ -22,6 +24,8 @@ const userSchema = new Schema({
     minlength: 5,
   },
   previousWork: [progressSchema],
+  orders: [Order.schema]
+  
 });
 
 userSchema.pre('save', async function (next) {

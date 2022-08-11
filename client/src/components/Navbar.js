@@ -33,6 +33,9 @@ const AppNavbar = () => {
               <Nav.Link as={Link} to='/achievement'>
               Achievement Board
               </Nav.Link>
+              <Nav.Link as={Link} to='/donate'>
+              Donate
+              </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (

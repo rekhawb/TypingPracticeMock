@@ -17,6 +17,17 @@ export const GET_ME = gql`
         netWPM
         accuracy
       }
+      orders{
+        _id
+        purchaseDate
+        donations{
+          _id
+          donationTitle
+          donationDesc
+          donationPrice
+        }
+
+      }
     }
   }
 `;
@@ -43,3 +54,26 @@ query selectParagraph($_id: String){
     }
   }
 `;
+
+
+export const QUERY_CHECKOUT = gql`
+  query getCheckout($donations: [ID]!) {
+    checkout(donations: $donations) {
+      session
+    }
+  }
+`;
+
+
+
+export const QUERY_ALL_DONATIONS = gql`
+  {
+    donation {
+      _id
+     donationTitle
+     donationDesc
+    }
+  }
+`;
+
+

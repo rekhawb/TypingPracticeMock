@@ -63,5 +63,17 @@ export const REMOVE_PROGRESS = gql`
 `;
 
 
-
+export const ADD_ORDER = gql`
+  mutation addOrder($donations: [ID]!) {
+    addOrder(donations: $donations) {
+      purchaseDate
+      donations {
+        _id
+        donationTitle
+        donationDesc
+        donationAmt
+      }
+    }
+  }
+`;
 
