@@ -33,7 +33,7 @@ const Donation = () =>{
       function submitCheckout() {
         let donationIds = [];
      
-        donationIds = ['62f55e6bc555cdfc2d004ad7'];
+        donationIds = ['62f5942bc5382f2d99730d9e'];
 
         alert(donationIds)
     
