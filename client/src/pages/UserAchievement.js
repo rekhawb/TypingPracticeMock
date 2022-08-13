@@ -25,11 +25,9 @@ function AchievementModal() {
     const [removeProgress,{error}] = useMutation(REMOVE_PROGRESS);
     const userData = data?.user || {};
 
-
-
     const handleDeleteText = async (textId) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
-    alert(textId);
+    //alert(textId);
         if (!token) {
           return false;
         }

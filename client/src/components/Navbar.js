@@ -6,11 +6,16 @@ import LoginForm from './LoginForm';
 
 import Auth from '../utils/auth';
 import { Container } from './styles/Container';
-
+import { useMutation,useQuery } from '@apollo/client';
+import { GET_ME } from '../utils/queries';
 const AppNavbar = () => {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
+  const { loading, data} = useQuery(GET_ME);
 
+  
+  const userData = data?.user || {};
+//alert(userData.username)
   return (
     <>
     <Container>
@@ -37,8 +42,8 @@ const AppNavbar = () => {
               Donate
               </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
-
-     
+                  <Nav.Link as={Link} to='/'> {userData.username == 'undefined' ? '':"Current User: "+userData.username}</Nav.Link>
+             
                </>
               ) : (
                 <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
