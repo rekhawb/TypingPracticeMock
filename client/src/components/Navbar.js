@@ -37,7 +37,9 @@ const AppNavbar = () => {
               Donate
               </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
-                </>
+
+     
+               </>
               ) : (
                 <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
               )}

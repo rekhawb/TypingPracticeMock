@@ -20,6 +20,7 @@ import Card from './components/styles/Header'
 import { Container } from './components/styles/Header'
 import GlobalStyles from  './components/styles/Header'
 
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });

@@ -25,10 +25,19 @@ font-weight:bold
 `;
 
 
+
+
 export const StyledText3 = styled.span`
 color:orange;
 font-weight:bold;
 animation-name: ${animatePosition};
  animation-duration: 2s;
  animation-iteration-count: infinite;
+`;
+
+export const StyledText4 = styled.p`
+color: black;
+text-align: center;
+font-size: 1rem;
+font-weight:bold
 `;

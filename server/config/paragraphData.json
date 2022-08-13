@@ -1,14 +1,18 @@
 
 [
+
     {
         "paragraphTitle":"Helping Kids Understand Thunderstorms",
-        "paragraphDesc":"Springtime and summer are notorious for daily thunderstorms. It is not uncommon for storms to cause fear and anxiety in a child.But if you understand what’s happening, that fear can turn into wonder. Nature is amazing!"
+        "paragraphDesc":"Springtime and summer are notorious for daily thunderstorms. It is not uncommon for storms to cause fear and anxiety in a child. The wind, rain, loud noises, and flashes of light can cause sensory overload. This can cause a reluctance to leave the house, reluctance to go outdoors, or perpetual checking of the weather. But if you understand what's happening, that fear can turn into wonder. Nature is amazing!"
         
         },
-        
+        {
+            "paragraphTitle":"Analysis of mutations in cancer",
+            "paragraphDesc":"In cancer, the genomes of affected cells are rearranged in complex or even unpredictable ways. Massive sequencing efforts are used to identify previously unknown point mutations in a variety of genes in cancer. Bioinformaticians continue to produce specialized automated systems to manage the sheer volume of sequence data produced, and they create new algorithms and software to compare the sequencing results to the growing collection of human genome sequences and germline polymorphisms."
+        },
         {
             "paragraphTitle":"Sweet and Danger",
-            "paragraphDesc":"The effects of added sugar intake — higher blood pressure, inflammation, weight gain, diabetes, and fatty liver disease — are all linked to an increased risk for heart attack and stroke, says Dr. Hu."
+            "paragraphDesc":"How sugar actually affects heart health is not completely understood, but it appears to have several indirect connections. The effects of added sugar intake - higher blood pressure, inflammation, weight gain, diabetes, and fatty liver disease - are all linked to an increased risk for heart attack and stroke, says Dr. Hu."
             
             },
 
@@ -16,6 +20,10 @@
                 "paragraphTitle":"Type Special Characters",
                 "paragraphDesc":"112233445566778899 Saturn V rocket’s first stage carries 203,400 gallons (770,000 liters) of kerosene fuel and 318,000 gallons (1.2 million liters) of liquid oxygen needed for combustion.4444 &&&& 5555 %%%% 6666 ???? 7777"
                 
-                }
+                },
+                {
+                    "paragraphTitle":"Wikipedia",
+                    "paragraphDesc":"Wikis are enabled by wiki software, otherwise known as wiki engines. A wiki engine, being a form of a content management system, differs from other web-based systems such as blog software, in that the content is created without any defined owner or leader, and wikis have little inherent structure, allowing structure to emerge according to the needs of the users."                    
+                    }
 
 ]

@@ -10,6 +10,7 @@ import {GET_ATEXT} from '../utils/queries';
 import { SAVE_PROGRESS } from '../utils/mutations';
 import {Container} from '../components/styles/Container';
 import { StyledCard } from '../components/styles/Card';
+import { StyledHeader1 } from '../components/styles/Header';
 import { Flex } from'../components/styles/Flex';
 import {Button}  from'../components/styles/Button'
 import ViewResults from './ViewResultsOnly';
@@ -105,7 +106,7 @@ let timer;
           passageTitle:title,
           attemptedOn:format(new Date(), 'MM/dd/yyyy'),
           grossWPM:(Math.round(charTyped/5)).toString(),
-          netWPM:((Math.round(charTyped/5))-inCorrectChar).toString(),
+          netWPM:((Math.round((charTyped-inCorrectChar)/5))).toString(),
           accuracy:(Math.round(((correctChar/charCount)*100))).toString()
         
         
@@ -181,7 +182,7 @@ let timer;
             
              <textarea
                name='paragraphInput'
-              defaultValue={paragraphInput}               
+              defaultValue={paragraphInput} 
                type='text'
                spellCheck='false'
                size='lg'

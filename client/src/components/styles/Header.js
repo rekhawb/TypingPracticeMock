@@ -16,6 +16,13 @@ export const StyledHeader = styled.h1`
  background-color: orange
 `;
 
+
+export const StyledHeader1 = styled.h4`
+ text-align:center;
+ font-size: 1rem;
+ font-weight: bold
+`;
+
 export const Nav = styled.nav`
   display: flex;
   align-items: center;

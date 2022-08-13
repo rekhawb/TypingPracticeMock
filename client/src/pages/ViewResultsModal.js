@@ -5,7 +5,7 @@ import { Container } from  '../components/styles/Container';
 import { StyledCard } from '../components/styles/Card';
 import { Flex } from'../components/styles/Flex';
 import { StyledHeader } from '../components/styles/Header';
-
+import { StyledText4 } from '../components/styles/pTag';
 import '../index.css'
 import { SAVE_PROGRESS } from '../utils/mutations';
 
@@ -52,7 +52,7 @@ let wordPara2 = str2.match(/\b(\w+)\b/g);
 
       useEffect(() => {
         charCount  !== 0 ?
-        setnWPM((Math.round(charCount/5))-inCorrectChar): setnWPM(0)
+        setnWPM((Math.round((charCount)-inCorrectChar)/5)): setnWPM(0)
       },[]);
 
       useEffect(() => {
@@ -142,32 +142,16 @@ let wordPara2 = str2.match(/\b(\w+)\b/g);
         </StyledHeader>
   
     
-    <StyledCard>
-           Word Matches:  {wrongWordIndexes}
-           </StyledCard>
-           <StyledCard>         
-           Key Strokes:  {charCount}
-           </StyledCard>
-           <StyledCard>      
-           Gross WPM:  {gWPM}  WPM
-           </StyledCard>
            <StyledCard>
-         <div className ="col-xs-4 mt-5 mr-2">
-           Net WPM:  {nWPM} WPM
-         </div>
-         <div className ="col-xs-4 mt-5 mr-2">
-           Incorrect Char:  {inCorrectChar}
-         </div>
-         <div className ="col-xs-4 mt-5 mr-2">
-           Accuracy:  {tAccrcy} %
-         </div>
-         <div className ="col-xs-4 mt-5 mr-2">
-           CorrectChar:  {correctChar}
-         </div>
-         <div className ="col-xs-4 mt-5 mr-2">
-           TotalChar: {charCount}
-         </div>
-     </StyledCard>
+           <StyledText4>Word Matches:  {wrongWordIndexes}</StyledText4>
+           <StyledText4>Gross WPM:  {gWPM}  WPM</StyledText4>
+           <StyledText4>Net WPM:  {nWPM} WPM</StyledText4>
+           <StyledText4>Accuracy:  {tAccrcy} %</StyledText4>
+           <StyledText4> TotalChar: {charCount}</StyledText4>
+           <StyledText4>CorrectChar:  {correctChar}</StyledText4>
+           <StyledText4>Incorrect Char:  {inCorrectChar}</StyledText4>
+         
+           </StyledCard>
 
             </>
     ) : (

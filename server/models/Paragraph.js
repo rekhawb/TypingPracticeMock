@@ -13,7 +13,7 @@ const paragraphSchema = new Schema({
  paragraphDesc: {
     type: String,
     minlength: 1,
-    maxlength: 280,
+    maxlength: 500,
     trim: true,
   }
 });

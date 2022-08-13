@@ -6,7 +6,10 @@ import { Jumbotron,CardColumns, Card } from 'react-bootstrap';
 
 import {Container} from '../components/styles/Container'
 import { StyledHeader } from '../components/styles/Header';
+import { StyledCard } from '../components/styles/Card';
+import { Flex } from'../components/styles/Flex';
 import { Button } from '../components/styles/Button';
+import { StyledText4 } from '../components/styles/pTag';
 
 import Auth from '../utils/auth';
 //Import the `useMutation()` hook from Apollo Client
@@ -60,30 +63,35 @@ function AchievementModal() {
         </Container>
     
       <Container>
-        <h2>
+    
+      <h2>
           {userData.previousWork?.length
-            ? `Entries found: ${userData.previousWork.length} ` : 'Select a text to practice typing'}
+            ? ` ` : 'Select a text to practice typing'}
         </h2>
-        <CardColumns>
+     
           
           {userData.previousWork?.map((work) => {
             return (
+              <StyledCard>
+                <CardColumns>
               <Card key={work.textId} border='dark'>
                 <Card.Body>
                   <Card.Title>{work.passageTitle}</Card.Title>
                   <p className='small'>Date: {work.attemptedOn}</p>
-                  <p className='small'>Gross WPM: {work.grossWPM}</p>
-                  <p className='small'>Net WPM: {work.netWPM}</p>
-                  <p className='small'>Accuracy: {work.accuracy}</p>
+                  <p className='small'>Gross WPM: {work.grossWPM} wpm</p>
+                  <p className='small'>Net WPM: {work.netWPM} wpm</p>
+                  <p className='small'>Accuracy: {work.accuracy} %</p>
                  
                   <Button className='btn-block btn-danger' onClick={() => handleDeleteText(work._id)}>
                     Delete
                   </Button>
                 </Card.Body>
               </Card>
+              </CardColumns>
+              </StyledCard>
             );
           })}
-        </CardColumns>
+     
       </Container>
     </>
   );
