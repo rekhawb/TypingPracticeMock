@@ -10,7 +10,7 @@ import {GET_ATEXT} from '../utils/queries';
 import { SAVE_PROGRESS } from '../utils/mutations';
 import {Container} from '../components/styles/Container';
 import { StyledCard } from '../components/styles/Card';
-import { StyledHeader1 } from '../components/styles/Header';
+import {StyledHeader, StyledHeader1 } from '../components/styles/Header';
 import { Flex } from'../components/styles/Flex';
 import {Button}  from'../components/styles/Button'
 import ViewResults from './ViewResultsOnly';
@@ -52,7 +52,7 @@ const [paragraphInput, setparagraphInput] = useState(str);
 
 
 const [paragraphUser, setparagraphUser] = useState('');
-const [trackTime, setTimer] = useState(60);
+const [trackTime, setTimer] = useState(65);
 const[warningModal,showModal] = useState(false);
 const[charCount, setCharCount] = useState(0);
 
@@ -179,7 +179,10 @@ let timer;
    <Container>
     <Flex>
      <StyledCard>
-            
+            <h6><span style={{color:'Orange',fontWeight: 'bold'}}>You can get an extra 5 seconds to start typing.</span></h6>
+            <h6><span style={{color:'Orange',fontWeight: 'bold'}}> Page redirects to scores as soon as timer hits 60 secs</span></h6>
+            <h6> <span style={{color:'Orange',fontWeight: 'bold'}}>Scores for all practice lessons are saved under Achievement Board</span></h6>
+            <StyledHeader> Start typing in the blank box below</StyledHeader><br></br>
              <textarea
                name='paragraphInput'
               defaultValue={paragraphInput} 
