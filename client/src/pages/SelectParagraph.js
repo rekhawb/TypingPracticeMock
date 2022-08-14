@@ -29,6 +29,8 @@ const SelectParagraphs = () =>{
     //<Link to={{ pathname: `/search/${text._id}` }}>
     //<Link to={{ pathname: `/search/${text.paragraphDesc}`} }>
     //<Link to={{ pathname: `/search/${text.paragraphDesc}`} }>
+
+        //paragraph list is displayed for user selection
       return (
         <>
              <Container>
@@ -37,7 +39,7 @@ const SelectParagraphs = () =>{
           
           <Container>
          
-           
+       
               
               {paragraphData?.map((text) => {
                 return (

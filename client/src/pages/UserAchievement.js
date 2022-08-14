@@ -51,7 +51,7 @@ function AchievementModal() {
     return <h2>LOADING...</h2>;
   }
 
-
+// user's progress is stored. gross wpm, net wpm, accuracy are calculated  using correct chars, incorrect chars and chars typed. charstyped/5 is used to calc number of words typed.
 
   return (
     <>

@@ -132,6 +132,8 @@ let timer;
        
       });
 
+      //update useStates accordingly, charCout, incorrect chars, correct chars, userString, for downstream calcs - gross wpm, net wpm, accuracy
+
       const userInputVaidate = (e) =>{
         let inputStr =JSON.stringify(getParaInput()).slice(1,);
        let userStr = e.target.value;
@@ -149,6 +151,8 @@ let timer;
        {
        // alert(userStr.length);
         //alert(inputStr.slice(1,userStr.length));
+        // user typed string is matched with input string, if there is a match,  state is updated with user string, else state is not updated, the incorrect characters are counted. 
+
         if(inputStr.slice(0,userStr.length) === userStr){
             setCorrectChar(correctChar+1);
            // alert(correctChar);
@@ -164,7 +168,7 @@ let timer;
         return;
       };
 
-
+//selected text is ready for typing
 
 
  {

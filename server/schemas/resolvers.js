@@ -2,6 +2,7 @@ const { User, Paragraph,Donation,Order } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 
 const { signToken } = require('../utils/auth');
+
 const stripe = require('stripe')('sk_test_51LUT8iF2iC57NwAvKj39nzrTl30HfI9sj7hubL9zrHJIHUgg6uS0LgysPxkE4F9HUaSkAT7bAZYXQYPD9A0tM7ze00uClaOei4');
 
 const resolvers = {

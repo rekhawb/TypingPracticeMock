@@ -22,9 +22,8 @@ import { CardElement, PaymentElement } from "@stripe/react-stripe-js";
 import { useLazyQuery } from "@apollo/client";
 import { QUERY_CHECKOUT } from "../utils/queries";
 
-const stripePromise = loadStripe(
-  "pk_test_51LUT8iF2iC57NwAvWF7WbFtO6t5KiR3UD6Cud6xtgrhgtV9aK9s0BGAin1pmH1xr4sWqsoFSrBWturU6Cn4ec5Ix00DQ5gTbE6"
-);
+
+const stripePromise = loadStripe(process.env.REACT_APP_PK_KEY);
 
 const Donation = () => {
   //const stripe = useStripe();
@@ -45,7 +44,7 @@ const Donation = () => {
   function submitCheckout() {
     let donationIds = [];
 
-    donationIds = ["62f65acc682b75b3a72b7931"]; //['62f55e6bc555cdfc2d004ad7'];
+    donationIds = [process.env.REACT_APP_DONATION_KEY]
 
     //alert(donationIds)
 

@@ -104,6 +104,7 @@ let wordPara2 = str2.match(/\b(\w+)\b/g);
     <Container>
     {isHighlightActive ? (
       // map through the two strings and render the highlighted character or regular character
+      // scores are displayed as soon as timer hits 60secs
       <>
         <StyledHeader>
           Text selected to practice
